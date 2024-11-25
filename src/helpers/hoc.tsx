@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect } from "react";
 
 const hoc = (WrappedComponent) => {
@@ -9,7 +10,7 @@ const hoc = (WrappedComponent) => {
         console.log(`Component ${WrappedComponent.name} unmounted`);
       };
     }, []);
-    return WrappedComponent(props);
+    return <WrappedComponent {...props} />;
   };
 };
 

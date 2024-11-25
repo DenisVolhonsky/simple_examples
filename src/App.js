@@ -3,14 +3,14 @@ import "./App.css";
 import Header from "./components/Header.tsx";
 import hoc from "./helpers/hoc.tsx";
 import useCounter from "./hooks/useCounter.tsx";
-import useMousePosition from "./hooks/useMousePosition.tsx";
+import MousePosition from "./helpers/MousePosition.tsx";
+import UsersList from "./components/UsersList.tsx";
 
 const HeaderWithLogs = hoc(Header);
 
 function App() {
   const [isVisible, setVisible] = useState(false);
   const { inc, dec, count } = useCounter(5);
-  const position = useMousePosition();
 
   const handleMount = () => setVisible(!isVisible);
 
@@ -22,10 +22,16 @@ function App() {
         <button onClick={inc}>+</button>
         <button onClick={dec}>-</button>
         <p>{count}</p>
-        <h1>
-          x: {position.x}, y: {position.y}
-        </h1>
+        <h1></h1>
       </div>
+      <MousePosition
+        render={(position) => (
+          <div>
+            x: {position.x}, y: {position.y}{" "}
+          </div>
+        )}
+      />
+      <UsersList />
     </div>
   );
 }

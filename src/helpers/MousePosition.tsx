@@ -1,8 +1,8 @@
+import React from "react";
 import { useEffect, useState } from "react";
-import useTrottle from "./useTrottle.tsx";
-import useDebounce from "./useDebounce.tsx";
+import useDebounce from "../hooks/useDebounce.tsx";
 
-const useMousePosition = () => {
+const MousePosition = ({render}) => {
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
@@ -27,7 +27,7 @@ const useMousePosition = () => {
 
   const debouncesetPosition = useDebounce(position, 400);
 
-  return debouncesetPosition;
+  return <div>{render(debouncesetPosition)}</div> 
 };
 
-export default useMousePosition;
+export default MousePosition;
